@@ -1,6 +1,6 @@
 using System;
 using UnityEngine;
-public class PlayerMovement : MonoBehaviour
+public class SimplePlayerMovement : MonoBehaviour
 {
     private float walkSpeed = 4f; //changes depends on the character 
     private float runSpeed = 8f; //changes depends on the character

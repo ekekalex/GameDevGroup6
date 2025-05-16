@@ -4,12 +4,11 @@ using System;
 using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
-    private float walkSpeed = 4f; //changes depends on the character 
-    private float runSpeed = 8f; //changes depends on the character
-    private float jumpHeight = 2.5f;
-    private int maxJumps = 3; //max height jump (usually double the standard)
-
-    private float gravity = -9.81f; //standard gravity/physics settings
+    public float walkSpeed = 4f; //changes depends on the character 
+    public float runSpeed = 8f; //changes depends on the character
+    public float jumpHeight = 2f;
+    public int maxJumps = 2; //number of jumps (2 is double jump)
+    public float gravity = -10f; //standard gravity/physics settings
     private CharacterController characterController;
     private Vector3 velocity; 
     private int jumpCount;

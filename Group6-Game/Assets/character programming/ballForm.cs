@@ -6,4 +6,9 @@ public class CharacterMorpth : MonoBehaviour
     public GameObject ballForm;
     
     private bool isBall = false;
+    
+    void Update()
+    {
+        
+    }
 }

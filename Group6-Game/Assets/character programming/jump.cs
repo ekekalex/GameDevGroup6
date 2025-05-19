@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
     public float walkSpeed = 4f; //changes depends on the character 
     public float runSpeed = 8f; //changes depends on the character
     public float jumpHeight = 2f;
-    public int maxJumps = 2; //number of jumps (2 is double jump)
+    public int maxJumps = 10; 
     public float gravity = -10f; //standard gravity/physics settings
     private CharacterController characterController;
     private Vector3 velocity; 

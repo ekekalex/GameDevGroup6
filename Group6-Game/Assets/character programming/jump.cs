@@ -33,21 +33,38 @@ public class PlayerMovement : MonoBehaviour
         float currentSpeed = IsRunning() ? runSpeed : walkSpeed;
         characterController.Move(moveDirection * currentSpeed * Time.deltaTime);
     }
-    private void HandleJump()
+
+    private float lastSpacePressTime = 0f;
+    private float doubleTapThreshold = 0.3f; // time gap between each time the space can be taps
+    private void HandleJump() 
     {
         if (characterController.isGrounded)
         {
-            jumpCount = 0;
-            if (velocity.y < 0f) // grounded state
             velocity.y = -2f;
         }
-        else
+        // assigning key accordingly to the correct jump type
+        if (Input.GetKeyDown(KeyCode.V) && characterController.isGrounded) //triple jump when "V" key is press
         {
-            if (Input.GetButtonDown("Jump") && jumpCount < maxJumps) //when spacebar is pressed, character can jump or double jump
+            float jumpPower = jumpHeight * 1.5f;
+            velocity.y = (float)Math.Sqrt(jumpPower * -2f * gravity); //this function is curently only work for "grounded state" 
+        }
+        //check for normal or cricket jump
+        if (Input.GetKeyDown(KeyCode.Space) && characterController.isGrounded)
+        {
+            float currentTime = Time.time;
+            float timeSinceLastPress = currentTime - lastSpacePressTime;
+            lastSpacePressTime = currentTime;
+
+            float jumpPower;
+            if (timeSinceLastPress <= doubleTapThreshold)
             {
-                velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity); //-2f so that it stay to gravity level 
-                jumpCount++;
+                jumpPower = jumpHeight * 0.4f; //cricket jump if double space key press with the gap between each tap is => 3 seconds
             }
+            else
+            {
+                jumpPower = jumpHeight; //regular jump 
+            }
+            velocity.y = (float)Math.Sqrt(jumpPower * -2f * gravity);
         }
     }
     private void ApplyGravity()

@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
     public float walkSpeed = 4f; //changes depends on the character 
     public float runSpeed = 8f; //changes depends on the character
     public float jumpHeight = 2f;
-    public int maxJumps = 1000; 
+    public int maxJumps = 10; 
     public float gravity = -10f; //standard gravity/physics settings
     private CharacterController characterController;
     private Vector3 velocity; 
@@ -34,13 +34,13 @@ public class PlayerMovement : MonoBehaviour
     }
     private void HandleJump() 
     {
-        if (characterController.isGrounded && velocity.y <0f)
+        if (characterController.isGrounded && velocity.y <0f)//resetting
         {
             jumpCount = 0;
             velocity.y = -2f;
         }
         // assigning key accordingly to the correct jump type
-        if (Input.GetKeyDown(KeyCode.V) && jumpCount <maxJumps) //triple jump when "V" key is press
+        if (Input.GetKeyDown(KeyCode.V) && jumpCount < maxJumps) //triple jump when "V" key is press
         {
             PerformJump(jumpHeight * 1.5f);
             jumpCount++;

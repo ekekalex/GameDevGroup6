@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
             velocity.y = -2f;
         }
         // assigning key accordingly to the correct jump type
-        if (Input.GetKeyDown(KeyCode.V) && characterController.isGrounded) //triple jump when "V" key is press
+        if (Input.GetKeyDown(KeyCode.V) && jumpCount == 2) //triple jump when "V" key is press
         {
             float jumpPower = jumpHeight * 1.5f;
             velocity.y = (float)Math.Sqrt(jumpPower * -2f * gravity); //this function is curently only work for "grounded state" 
@@ -52,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
         //check for normal or cricket jump
-        if (Input.GetKeyDown(KeyCode.Space) && characterController.isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) && jumpCount < maxJumps)
         {
             float jumpPower;
             if (jumpCount == 0)

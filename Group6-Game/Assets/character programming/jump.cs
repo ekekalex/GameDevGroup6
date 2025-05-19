@@ -34,17 +34,15 @@ public class PlayerMovement : MonoBehaviour
     }
     private void HandleJump() 
     {
-        if (characterController.isGrounded)
+        if (characterController.isGrounded && velocity.y <0f)
         {
             jumpCount = 0;
-            if (velocity.y <0f)
             velocity.y = -2f;
         }
         // assigning key accordingly to the correct jump type
         if (Input.GetKeyDown(KeyCode.V) && jumpCount == 2) //triple jump when "V" key is press
         {
-            float jumpPower = jumpHeight * 1.5f;
-            velocity.y = (float)Math.Sqrt(jumpPower * -2f * gravity); //this function is curently only work for "grounded state" 
+            PerformJump(jumpHeight * 1.5f);
             jumpCount++;
             return;
         }
@@ -64,15 +62,19 @@ public class PlayerMovement : MonoBehaviour
             {
                 return;
             }
-            velocity.y = (float)Math.Sqrt(jumpPower * -2f * gravity);
+            PerformJump(jumpPower);
             jumpCount++;
         }
+    }
+    private void PerformJump(float jumpPower)
+    {
+        velocity.y = Mathf.Sqrt(jumpPower * -2f * gravity);
     }
     private void ApplyGravity()
     {
         if (characterController.isGrounded && velocity.y < 0f)
         {
-            velocity.y = -2f; 
+            velocity.y = -2f;
         }
         else
         {

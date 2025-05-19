@@ -39,6 +39,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (characterController.isGrounded)
         {
+            jumpCount = 0;
+            if (velocity.y <0f)
             velocity.y = -2f;
         }
         // assigning key accordingly to the correct jump type
@@ -46,24 +48,27 @@ public class PlayerMovement : MonoBehaviour
         {
             float jumpPower = jumpHeight * 1.5f;
             velocity.y = (float)Math.Sqrt(jumpPower * -2f * gravity); //this function is curently only work for "grounded state" 
+            jumpCount++;
+            return;
         }
         //check for normal or cricket jump
         if (Input.GetKeyDown(KeyCode.Space) && characterController.isGrounded)
         {
-            float currentTime = Time.time;
-            float timeSinceLastPress = currentTime - lastSpacePressTime;
-            lastSpacePressTime = currentTime;
-
             float jumpPower;
-            if (timeSinceLastPress <= doubleTapThreshold)
+            if (jumpCount == 0)
             {
-                jumpPower = jumpHeight * 0.4f; //cricket jump if double space key press with the gap between each tap is => 3 seconds
+                jumpPower = jumpHeight; //normal jump
+            }
+            else if (jumpCount == 1)
+            {
+                jumpPower = jumpHeight * 0.4f; //cricket hop
             }
             else
             {
-                jumpPower = jumpHeight; //regular jump 
+                return;
             }
             velocity.y = (float)Math.Sqrt(jumpPower * -2f * gravity);
+            jumpCount++;
         }
     }
     private void ApplyGravity()

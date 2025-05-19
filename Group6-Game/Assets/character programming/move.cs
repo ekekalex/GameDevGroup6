@@ -2,9 +2,9 @@ using System;
 using UnityEngine;
 public class SimplePlayerMovement : MonoBehaviour
 {
-    private float walkSpeed = 4f; //changes depends on the character 
-    private float runSpeed = 8f; //changes depends on the character
-    private float gravity = -9.81f; //standard gravity/physics settings
+    public float walkSpeed = 4f; //changes depends on the character 
+    public float runSpeed = 8f; //changes depends on the character
+    public float gravity = -9.81f; //standard gravity/physics settings
     private CharacterController characterController;
     private Vector3 velocity; 
 

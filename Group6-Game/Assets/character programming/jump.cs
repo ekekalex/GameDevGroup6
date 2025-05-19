@@ -32,9 +32,6 @@ public class PlayerMovement : MonoBehaviour
         float currentSpeed = IsRunning() ? runSpeed : walkSpeed;
         characterController.Move(moveDirection * currentSpeed * Time.deltaTime);
     }
-
-    private float lastSpacePressTime = 0f;
-    private float doubleTapThreshold = 0.3f; // time gap between each time the space can be taps
     private void HandleJump() 
     {
         if (characterController.isGrounded)

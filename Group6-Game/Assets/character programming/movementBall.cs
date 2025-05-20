@@ -17,7 +17,7 @@ public class MovementBall : MonoBehaviour
         float c = Input.GetAxis("Vertical");
 
         Vector3 move = new Vector3(h, 0, c);
-        rb.AddForce(move * rollForce);
+        rb.AddRelativeForce(move * rollForce);
     } 
 
 }

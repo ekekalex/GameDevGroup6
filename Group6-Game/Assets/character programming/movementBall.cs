@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class MovementBall : MonoBehaviour
 {
-    private float rollForce = 10f;
+    private float rollForce = 4f;
 
     private Rigidbody rb;
     private void Awake()

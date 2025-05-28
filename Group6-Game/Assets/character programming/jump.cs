@@ -1,21 +1,28 @@
 //update script include the jump/double jump function
 //automatically it should set to the spacebar for jump action
 using System;
+using UnityEditor.Animations;
 using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float walkSpeed = 4f; //changes depends on the character 
     public float runSpeed = 8f; //changes depends on the character
     public float jumpHeight = 2f;
-    public int maxJumps = 10; 
+    public int maxJumps = 10;
     public float gravity = -10f; //standard gravity/physics settings
+    public GameObject antonioModel;
+    public Animator animator;
+    public AnimatorController runAnim;
+    public AnimatorController idleAnim;
+    public AnimatorController jumpAnim;
     private CharacterController characterController;
-    private Vector3 velocity; 
+    private Vector3 velocity;
     private int jumpCount;
 
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
+        animator = antonioModel.GetComponent<Animator>();
     }
     private void Update()
     {
@@ -31,10 +38,20 @@ public class PlayerMovement : MonoBehaviour
         Vector3 moveDirection = transform.right * horizontalInput + transform.forward * verticalInput;
         float currentSpeed = IsRunning() ? runSpeed : walkSpeed;
         characterController.Move(moveDirection * currentSpeed * Time.deltaTime);
+
+        //hand run vs idle animation
+        if (horizontalInput != 0 | verticalInput != 0)
+        {
+            animator.runtimeAnimatorController = runAnim;
+        }
+        else
+        {
+            animator.runtimeAnimatorController = idleAnim;
+        }
     }
-    private void HandleJump() 
+    private void HandleJump()
     {
-        if (characterController.isGrounded && velocity.y <0f)//resetting
+        if (characterController.isGrounded && velocity.y < 0f)//resetting
         {
             jumpCount = 0;
             velocity.y = -2f;

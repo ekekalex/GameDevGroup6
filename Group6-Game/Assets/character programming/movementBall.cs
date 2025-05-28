@@ -3,32 +3,32 @@ using UnityEngine;
 
 public class MovementBall : MonoBehaviour
 {
-    private float rollForce = 4f;
-    private bool allowForwardOnly = true;
-    private Transform cameraTransform;
+    private float rollForce = 1f;
+    private float maxSpeed = 2f;
+
+    private bool allowTurning = true;
 
     private Rigidbody rb;
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+
     }
 
     private void FixedUpdate()
     {
-        float c = Input.GetAxis("Vertical");
-        if (allowForwardOnly && c <= 0f)
+        float forwardInput = Input.GetAxis("Vertical");
+        float turnInput = allowTurning ? Input.GetAxis("Horizontal") : 0f;
+        if (forwardInput < 0f)
         {
-            return;
+            forwardInput = 0f;
         }
-
-        Vector3 camForward = cameraTransform.forward;
-        camForward.y = 0f;
-        camForward.Normalize();
-        Vector3 moveDir = camForward * c;
-        rb.linearVelocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
-        Vector3 torqueDirection = Vector3.Cross(Vector3.up, moveDir);
-        rb.AddTorque(torqueDirection * rollForce);
+        Vector3 moveDirection = new Vector3(turnInput, 0f, forwardInput);
+        if (rb.linearVelocity.magnitude < maxSpeed)
+        {
+            Vector3 torque = Vector3.Cross(Vector3.up, moveDirection.normalized) * rollForce;
+            rb.AddTorque(torque, ForceMode.Force);
+        }
     } 
 
 }

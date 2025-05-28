@@ -101,6 +101,59 @@ MonoBehaviour:
   receiverMotionRejection:
     m_OverrideState: 0
     m_Value: 1
+--- !u!114 &-5185930624461403803
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 598e2d32e2c7b0c418e030c3236d663a, type: 3}
+  m_Name: ChromaticAberration
+  m_EditorClassIdentifier: 
+  active: 1
+  quality:
+    m_OverrideState: 1
+    m_Value: 0
+  spectralLut:
+    m_OverrideState: 0
+    m_Value: {fileID: 0}
+  intensity:
+    m_OverrideState: 1
+    m_Value: 0.093
+  m_MaxSamples:
+    m_OverrideState: 1
+    m_Value: 3
+--- !u!114 &-4497578198292920390
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c1bfcd0f0fa7b8468f281d6bbbaf320, type: 3}
+  m_Name: LensDistortion
+  m_EditorClassIdentifier: 
+  active: 1
+  intensity:
+    m_OverrideState: 1
+    m_Value: 0.23
+  xMultiplier:
+    m_OverrideState: 0
+    m_Value: 1
+  yMultiplier:
+    m_OverrideState: 0
+    m_Value: 1
+  center:
+    m_OverrideState: 0
+    m_Value: {x: 0.5, y: 0.5}
+  scale:
+    m_OverrideState: 0
+    m_Value: 1
 --- !u!114 &-3284785451876589968
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -122,7 +175,7 @@ MonoBehaviour:
     m_Value: {r: 0.7735849, g: 0.676066, b: 0.2787825, a: 1}
   balance:
     m_OverrideState: 1
-    m_Value: -24.5
+    m_Value: -40
 --- !u!114 &-3128780378347008331
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -137,14 +190,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 1
   quality:
-    m_OverrideState: 1
-    m_Value: 1
+    m_OverrideState: 0
+    m_Value: 3
   rayTracing:
     m_OverrideState: 0
     m_Value: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 0.2
+    m_Value: 0.26
   directLightingStrength:
     m_OverrideState: 1
     m_Value: 0
@@ -155,7 +208,7 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 0.15
   temporalAccumulation:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 1
   ghostingReduction:
     m_OverrideState: 0
@@ -219,13 +272,13 @@ MonoBehaviour:
   active: 1
   shadows:
     m_OverrideState: 1
-    m_Value: {x: 0.84000003, y: 0.856, z: 1, w: 0}
+    m_Value: {x: 0.93, y: 0.9381667, z: 1, w: 0}
   midtones:
     m_OverrideState: 1
-    m_Value: {x: 0.9773333, y: 1, z: 0.83, w: 0}
+    m_Value: {x: 0.93866664, y: 1, z: 0.84000003, w: 0}
   highlights:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 0.5, z: 0, w: 0}
+    m_Value: {x: 1, y: 0.85, z: 0, w: 0}
   shadowsStart:
     m_OverrideState: 0
     m_Value: 0
@@ -248,7 +301,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
-  m_Name: gw Profile
+  m_Name: Stage1Volume Profile
   m_EditorClassIdentifier: 
   components:
   - {fileID: 3638402134412271163}
@@ -256,6 +309,8 @@ MonoBehaviour:
   - {fileID: -9092844191013623296}
   - {fileID: -3284785451876589968}
   - {fileID: -17877210164013146}
+  - {fileID: -5185930624461403803}
+  - {fileID: -4497578198292920390}
 --- !u!114 &3638402134412271163
 MonoBehaviour:
   m_ObjectHideFlags: 3

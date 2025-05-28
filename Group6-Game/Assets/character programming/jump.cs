@@ -6,11 +6,15 @@ public class PlayerMovement : MonoBehaviour
 {
     public float walkSpeed = 4f; //changes depends on the character 
     public float runSpeed = 8f; //changes depends on the character
-    public float jumpHeight = 2f;
-    public int maxJumps = 10; 
+    public float jumpHeight = 1f;
+    public int maxJumps = 10;
     public float gravity = -10f; //standard gravity/physics settings
+                                 //updating features to include the Cricket Hop ability.
+    public bool hasCricketPower = false;
+    public float cricketHopMultiplier = 0.4f;
+    public float tripleJumpMultiplier = 1.5f;
     private CharacterController characterController;
-    private Vector3 velocity; 
+    private Vector3 velocity;
     private int jumpCount;
 
     private void Awake()
@@ -32,9 +36,9 @@ public class PlayerMovement : MonoBehaviour
         float currentSpeed = IsRunning() ? runSpeed : walkSpeed;
         characterController.Move(moveDirection * currentSpeed * Time.deltaTime);
     }
-    private void HandleJump() 
+    private void HandleJump()
     {
-        if (characterController.isGrounded && velocity.y <0f)//resetting
+        if (characterController.isGrounded && velocity.y < 0f)//resetting
         {
             jumpCount = 0;
             velocity.y = -2f;
@@ -42,11 +46,19 @@ public class PlayerMovement : MonoBehaviour
         // assigning key accordingly to the correct jump type
         if (Input.GetKeyDown(KeyCode.V) && jumpCount < maxJumps) //triple jump when "V" key is press
         {
-            PerformJump(jumpHeight * 1.5f);
+            PerformJump(jumpHeight * tripleJumpMultiplier);
             jumpCount++;
             return;
         }
-        //check for normal or cricket jump
+
+          //testing 
+    if (Input.GetKeyDown(KeyCode.C))
+    {
+        hasCricketPower = true;
+        Debug.Log("Cricket hop is activated");
+    }
+
+
         if (Input.GetKeyDown(KeyCode.Space) && jumpCount < maxJumps)
         {
             float jumpPower;
@@ -54,13 +66,16 @@ public class PlayerMovement : MonoBehaviour
             {
                 jumpPower = jumpHeight; //normal jump
             }
-            else if (jumpCount == 1)
-            {
-                jumpPower = jumpHeight * 0.4f; //cricket hop
-            }
             else
             {
-                return;
+                if (hasCricketPower)
+                {
+                    jumpPower = jumpHeight * cricketHopMultiplier;
+                }
+                else
+                {
+                    jumpPower = jumpHeight;
+                }
             }
             PerformJump(jumpPower);
             jumpCount++;
@@ -87,4 +102,5 @@ public class PlayerMovement : MonoBehaviour
     {
         return Input.GetKey(KeyCode.LeftShift);
     }
+
 }

@@ -14,9 +14,14 @@ public class PlayerMovement : MonoBehaviour
     public float cricketHopMultiplier = 0.4f;
     public float tripleJumpMultiplier = 1.5f;
     private CharacterController characterController;
+    public float speed = 6f;
     private Vector3 velocity;
+    private CameraControl cameraControl;
     private int jumpCount;
-
+    private void Start()
+    {
+        cameraControl = Camera.main.GetComponent<CameraControl>();
+    }
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
@@ -26,6 +31,18 @@ public class PlayerMovement : MonoBehaviour
         HandleMovement();
         HandleJump();
         ApplyGravity();
+
+        float a = Input.GetAxis("Horizontal");
+        float b = Input.GetAxis("Vertical");
+        Vector3 inputDir = new Vector3(a, 0, b).normalized;
+        if (inputDir.magnitude >= 0.1f)
+        {
+            Quaternion camYaw = cameraControl.GetYawRotation();
+            Vector3 moveDir = camYaw * inputDir;
+            characterController.Move(moveDir * speed * Time.deltaTime);
+            Quaternion lookRotation = Quaternion.LookRotation(moveDir);
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 10f);
+        }
     }
 
     private void HandleMovement() //movement based on the player's input (arrows key and WASD)

@@ -66,6 +66,11 @@ public class CameraControl : MonoBehaviour
         currentZoom = Mathf.Clamp(currentZoom, minZoom, maxZoom);
     }
 
+    public Quaternion GetYawRotation()
+    {
+        return Quaternion.Euler(0, yaw, 0);
+    }
+
     public void SetTarget(Transform newTarget)
     {
         target = newTarget;

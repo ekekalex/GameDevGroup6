@@ -45,18 +45,7 @@ public class CameraControl : MonoBehaviour
 
     private void HandleRotationInput()
     {
-        float mouseX = Input.GetAxis("Mouse X");
-        float mouseY = Input.GetAxis("Mouse Y");
-        if (Mathf.Abs(mouseX) > 0.01f || Mathf.Abs(mouseY) > 0.01f)
-        {
-            lastInputTime = Time.time;
-        }
-        if (Cursor.lockState == CursorLockMode.Locked)
-        {
-            yaw += mouseX * mouseSensitivity;
-            pitch -= mouseY * mouseSensitivity;
-            pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
-        }
+        yaw = target.eulerAngles.y;
     }
 
     private void HandleZoom()

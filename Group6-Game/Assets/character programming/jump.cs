@@ -25,13 +25,17 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
+        Cursor.lockState = CursorLockMode.Locked;
     }
     private void Update()
     {
         HandleMovement();
         HandleJump();
         ApplyGravity();
+    }
 
+    private void HandleMovement() //movement based on the player's input (arrows key and WASD)
+    {
         float a = Input.GetAxis("Horizontal");
         float b = Input.GetAxis("Vertical");
         Vector3 inputDir = new Vector3(a, 0, b).normalized;
@@ -39,19 +43,17 @@ public class PlayerMovement : MonoBehaviour
         {
             Quaternion camYaw = cameraControl.GetYawRotation();
             Vector3 moveDir = camYaw * inputDir;
-            characterController.Move(moveDir * speed * Time.deltaTime);
-            Quaternion lookRotation = Quaternion.LookRotation(moveDir);
-            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 10f);
-        }
-    }
+            float currentSpeed = IsRunning() ? runSpeed : walkSpeed;
+            characterController.Move(moveDir * currentSpeed * Time.deltaTime);
 
-    private void HandleMovement() //movement based on the player's input (arrows key and WASD)
-    {
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
-        Vector3 moveDirection = transform.right * horizontalInput + transform.forward * verticalInput;
-        float currentSpeed = IsRunning() ? runSpeed : walkSpeed;
-        characterController.Move(moveDirection * currentSpeed * Time.deltaTime);
+            Vector3 lookDirection = new Vector3(moveDir.x, 0f, moveDir.z);
+            if (lookDirection.magnitude > 0.1f)
+            {
+            Quaternion targetRotation = Quaternion.LookRotation(lookDirection);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime);
+            }
+            
+        }
     }
     private void HandleJump()
     {
@@ -68,12 +70,12 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-          //testing 
-    if (Input.GetKeyDown(KeyCode.C))
-    {
-        hasCricketPower = true;
-        Debug.Log("Cricket hop is activated");
-    }
+        //testing 
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            hasCricketPower = true;
+            Debug.Log("Cricket hop is activated");
+        }
 
 
         if (Input.GetKeyDown(KeyCode.Space) && jumpCount < maxJumps)

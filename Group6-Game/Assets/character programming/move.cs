@@ -15,7 +15,7 @@ public class SimplePlayerMovement : MonoBehaviour
     private void Update()
     {
         HandleMovement();
-        ApplyGravity();
+        ApplyGravity(); 
     }
 
     private void HandleMovement() //movement based on the player's input (arrows key and WASD)

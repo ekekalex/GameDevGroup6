@@ -44,18 +44,18 @@ public class HeartHealth : MonoBehaviour
     }
     private void UpdateHearts()
     {
-        int health = currentHeath;
+        int HP = currentHeath;
         for (int i = 0; i < hearts.Length; i++)
         {
-            if (health >= 2)
+            if (HP >= 2)
             {
                 hearts[i].sprite = fullHeart;
-                health -= 2;
+                HP -= 2;
             }
-            else if (health == 1)
+            else if (HP == 1)
             {
                 hearts[i].sprite = halffHeart;
-                health -= 1;
+                HP -= 1;
             }
             else
             {
@@ -75,12 +75,12 @@ public class HeartHealth : MonoBehaviour
                 movement.enabled = false;
             }
         }
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
         if (gameOverUI != null)
         {
             gameOverUI.SetActive(true);
         }
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         //assign GameOver panel
     }
     public void RestartGame()

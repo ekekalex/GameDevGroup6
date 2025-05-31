@@ -8,21 +8,34 @@ public class PlayerHealthStatus : MonoBehaviour
     private int currentHP;
 
     public GameObject gameOverScreen;
+    public GameObject gameOverUI;
+    public delegate void OnHealthChanged(int currentHP);
+    public static event OnHealthChanged OnHealthChangedEvent;
     private void Start()
     {
         currentHP = maxHP;
         if (gameOverScreen != null)
         {
             gameOverScreen.SetActive(false);
+            TriggerHealthChanged();
         }
     }
-    public void Damage(int amount)
+    public void TakeDamage(int amount)
     {
         currentHP -= amount;
+        currentHP = Mathf.Clamp(currentHP, 0, maxHP);
+        TriggerHealthChanged();
+
         if (currentHP <= 0)
         {
             GameOver();
         }
+    }
+    public void Heal(int amount)
+    {
+        currentHP += amount;
+        currentHP = Mathf.Clamp(currentHP, 0, maxHP);
+        TriggerHealthChanged();
     }
     public void GameOver()
     {
@@ -31,6 +44,12 @@ public class PlayerHealthStatus : MonoBehaviour
         {
             gameOverScreen.SetActive(true);
         }
+        if (gameOverUI != null)
+        {
+            gameOverUI.SetActive(true);
+        }
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
     public void RestartGame()
     {
@@ -41,6 +60,14 @@ public class PlayerHealthStatus : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
+    }
+    private void TriggerHealthChanged()
+    {
+        OnHealthChangedEvent?.Invoke(currentHP);
+    }
+    public int GetCurrentHP()
+    {
+        return currentHP;
     }
 }
 //

@@ -7,13 +7,13 @@ using System.Data;
 public class HeartHealth : MonoBehaviour
 {
     public int maxHearts = 3;
-    public int healthPerHeart = 2;
+    public int healthPerHeart = 2; // full heart = 2HP 
     private int currentHeath;
 
-    public Sprite fullHeart;
-    public Sprite halffHeart;
-    public Sprite emptyHeart;
-    public Image[] hearts;
+    public Sprite fullHeart;  //full heart 
+    public Sprite halffHeart; // half heart
+    public Sprite emptyHeart;  //empty
+    public Image[] hearts;  // drag the hearts image here!
     public GameObject gameOverUI;
 
     private void Start()
@@ -67,7 +67,7 @@ public class HeartHealth : MonoBehaviour
     {
         Time.timeScale = 0f;
         GameObject player = GameObject.FindWithTag("Player");
-        if (player != null)
+        if (player != null) // disable playermovement if HP all gone
         {
             var movement = player.GetComponent<PlayerMovement>();
             if (movement != null)
@@ -81,6 +81,7 @@ public class HeartHealth : MonoBehaviour
         {
             gameOverUI.SetActive(true);
         }
+        //assign GameOver panel
     }
     public void RestartGame()
     {

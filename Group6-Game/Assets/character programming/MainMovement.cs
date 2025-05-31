@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 velocity;
     private CameraControl cameraControl;
     private int jumpCount;
+    private bool isAlive = true;
     private void Start()
     {
         cameraControl = Camera.main.GetComponent<CameraControl>();
@@ -29,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Update()
     {
+        if (!isAlive) return;   //heart health tracking 
         HandleMovement();
         HandleJump();
         ApplyGravity();
@@ -49,10 +51,10 @@ public class PlayerMovement : MonoBehaviour
             Vector3 lookDirection = new Vector3(moveDir.x, 0f, moveDir.z);
             if (lookDirection.magnitude > 0.1f)
             {
-            Quaternion targetRotation = Quaternion.LookRotation(lookDirection);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime);
+                Quaternion targetRotation = Quaternion.LookRotation(lookDirection);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime);
             }
-            
+
         }
     }
     private void HandleJump()
@@ -120,6 +122,10 @@ public class PlayerMovement : MonoBehaviour
                              // if not then false, character isnt moving
     {
         return Input.GetKey(KeyCode.LeftShift);
+    }
+    public void DisableMovement()
+    {
+        isAlive = false;
     }
 
 }

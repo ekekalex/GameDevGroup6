@@ -311,6 +311,7 @@ MonoBehaviour:
   hasCricketPower: 0
   cricketHopMultiplier: 0.4
   tripleJumpMultiplier: 1.5
+  speed: 6
 --- !u!1 &467312507 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7008504056089375178, guid: 6d50982ad97fe0e4e901c483f97b045a, type: 3}
@@ -430,6 +431,14 @@ PrefabInstance:
     - target: {fileID: 2695570893915768756, guid: c97043a9624088b4cb3e9fb5d73bb352, type: 3}
       propertyPath: m_Name
       value: PlayerCharacter
+      objectReference: {fileID: 0}
+    - target: {fileID: 2695570893915768756, guid: c97043a9624088b4cb3e9fb5d73bb352, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7770433241542447773, guid: c97043a9624088b4cb3e9fb5d73bb352, type: 3}
+      propertyPath: m_TagString
+      value: MainCamera
       objectReference: {fileID: 0}
     - target: {fileID: 7979410693602606415, guid: c97043a9624088b4cb3e9fb5d73bb352, type: 3}
       propertyPath: m_LocalPosition.x

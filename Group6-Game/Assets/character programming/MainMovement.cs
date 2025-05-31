@@ -16,12 +16,11 @@ public class PlayerMovement : MonoBehaviour
     private CharacterController characterController;
     public float speed = 6f;
     private Vector3 velocity;
-    private CameraControl cameraControl;
+    public CameraControl cameraControl;
     private int jumpCount;
     private bool isAlive = true;
     private void Start()
     {
-        cameraControl = Camera.main.GetComponent<CameraControl>();
     }
     private void Awake()
     {

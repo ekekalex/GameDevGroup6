@@ -2,7 +2,7 @@
 using UnityEngine;
 public class DeathZone : MonoBehaviour
 {
-    private void OiggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         HeartHealth heath = other.GetComponent<HeartHealth>();
         if (heath != null)

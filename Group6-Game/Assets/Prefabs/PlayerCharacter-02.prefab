@@ -2675,7 +2675,7 @@ MonoBehaviour:
   yaw: 0
   minPitch: -20
   maxPitch: 60
-  currentZoom: 6
+  currentZoom: 3
   minZoom: 3
   maxZoom: 10
 --- !u!1 &7780580456629521784

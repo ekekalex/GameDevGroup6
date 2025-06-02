@@ -9,7 +9,7 @@ public class CheckPointTrigger : MonoBehaviour
             PlayerHealthStatus health = other.GetComponent<PlayerHealthStatus>();
             if (health != null)
             {
-                health.SetCheckpoint(transform.position);
+                //health.SetCheckpoint(transform.position);
                 Debug.Log("Last Saved Checkpoint was: " + transform.position);
             }
         }

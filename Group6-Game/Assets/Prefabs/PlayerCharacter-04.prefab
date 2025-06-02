@@ -1691,7 +1691,7 @@ GameObject:
   - component: {fileID: 7187741474030338306}
   m_Layer: 0
   m_Name: antonio2
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3587,7 +3587,7 @@ GameObject:
   - component: {fileID: 669460608413926351}
   m_Layer: 0
   m_Name: PlayerCharacter-04
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

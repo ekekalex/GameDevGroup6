@@ -19,6 +19,7 @@ public class HeartHealth : MonoBehaviour
     public GameObject gameOverUI;
     private List<Image> heartImages = new List<Image>();
     public Vector3 currentCheckpoint;
+    public GameObject gameOverPanel;
 
 
     private void Start()
@@ -105,6 +106,11 @@ public class HeartHealth : MonoBehaviour
     }
     private void GameOver()
     {
+        Debug.Log("Game Over!");
+        if (gameOverPanel != null)
+        {
+            gameOverPanel.SetActive(true);
+        }
         Time.timeScale = 0f;
         GameObject player = GameObject.FindWithTag("Player");
         if (player != null) // disable playermovement if HP all gone

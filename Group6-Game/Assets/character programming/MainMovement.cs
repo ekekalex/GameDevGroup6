@@ -39,8 +39,9 @@ public class PlayerMovement : MonoBehaviour
         float b = Input.GetAxis("Vertical");
 
         Vector3 inputDir = new Vector3(a, 0, b).normalized;
-        if (inputDir.magnitude >= 0.2f)
+        if (inputDir.magnitude >= 0.1f)
         {
+            inputDir.Normalize();
             Quaternion camYaw = cameraControl.GetYawRotation();
             Vector3 moveDir = camYaw * inputDir;
             float currentSpeed = IsRunning() ? runSpeed : walkSpeed;
@@ -53,6 +54,7 @@ public class PlayerMovement : MonoBehaviour
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
             }
         }
+        characterController.Move(Vector3.zero);
     }
     private void HandleJump()
     {

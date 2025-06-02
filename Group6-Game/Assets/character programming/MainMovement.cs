@@ -1,7 +1,6 @@
 //update script include the jump/double jump function
 //automatically it should set to the spacebar for jump action
 using System;
-using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.EventSystems;
 public class PlayerMovement : MonoBehaviour
@@ -26,9 +25,9 @@ public class PlayerMovement : MonoBehaviour
     // Animation controllers
     public GameObject antonioModel;
     public Animator animator;
-    public AnimatorController runAnim;
-    public AnimatorController idleAnim;
-    public AnimatorController jumpAnim;
+    public RuntimeAnimatorController runAnim;
+    public RuntimeAnimatorController idleAnim;
+    public RuntimeAnimatorController jumpAnim;
 
     private void Awake()
     {

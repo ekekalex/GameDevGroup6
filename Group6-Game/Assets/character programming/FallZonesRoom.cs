@@ -9,7 +9,17 @@ public class RoomFallZone : MonoBehaviour
         if (health != null)
         {
             health.TakeDamage(damageOnFall);
-            other.transform.position = respawnPoint.position;
+            CharacterController controller = GetComponent<CharacterController>();
+            if (controller != null)
+            {
+                controller.enabled = false;
+                transform.position = respawnPoint.position;
+                controller.enabled = true;
+            }
+            else
+            {
+                other.transform.position = respawnPoint.position;
+            }
         }
     }
 }

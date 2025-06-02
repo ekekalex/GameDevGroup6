@@ -66,17 +66,7 @@ public class HeartHealth : MonoBehaviour
         if (currentHeath > 0)
         {
             TakeDamage(1);
-            CharacterController controller = GetComponent<CharacterController>();
-            if (controller != null)
-            {
-                controller.enabled = false;
-                transform.position = currentCheckpoint;
-                controller.enabled = true;
-            }
-            else
-            {
-                transform.position = currentCheckpoint;
-            }
+            
         }
         else
         {

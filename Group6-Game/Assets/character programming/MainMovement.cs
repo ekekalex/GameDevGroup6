@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     public float cricketHopMultiplier = 0.4f;
     public float tripleJumpMultiplier = 1.5f;
     public CameraControl cameraControl;
-    
+
     // Animation controllers
     public GameObject antonioModel;
     public Animator animator;
@@ -40,6 +40,7 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         if (!isAlive) return;
+        isGrounded = characterController.isGrounded;
         HandleMovement();
         HandleJump();
         ApplyGravity();
@@ -48,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
     {
         float a = Input.GetAxisRaw("Horizontal");
         float b = Input.GetAxisRaw("Vertical");
-        
+
         Vector3 inputDir = new Vector3(a, 0, b).normalized;
         if (inputDir.magnitude >= 0.2f)
         {
@@ -64,7 +65,11 @@ public class PlayerMovement : MonoBehaviour
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
             }
         }
-        if (inputDir.magnitude >=0.1f)
+        if (!isGrounded)
+        {
+            animator.runtimeAnimatorController = jumpAnim;
+        }
+        else if (inputDir.magnitude >= 0.1f)
         {
             animator.runtimeAnimatorController = runAnim;
         }
@@ -130,6 +135,8 @@ public class PlayerMovement : MonoBehaviour
             velocity.y += gravity * Time.deltaTime;
             characterController.Move(velocity * Time.deltaTime);
         }
+        Vector3 moveVector = velocity * Time.deltaTime;
+        characterController.Move(moveVector);
     }
     private bool IsRunning() //if true then the character would run if the key is pressed 
                              // if not then false, character isnt moving

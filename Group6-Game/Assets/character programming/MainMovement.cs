@@ -35,8 +35,8 @@ public class PlayerMovement : MonoBehaviour
     }
     private void HandleMovement() //movement based on the player's input (arrows key and WASD)
     {
-        float a = Input.GetAxis("Horizontal");
-        float b = Input.GetAxis("Vertical");
+        float a = Input.GetAxisRaw("Horizontal");
+        float b = Input.GetAxisRaw("Vertical");
 
         Vector3 inputDir = new Vector3(a, 0f, b).normalized;
         Vector3 moveDir = Vector3.zero;
@@ -56,7 +56,6 @@ public class PlayerMovement : MonoBehaviour
         }
         Vector3 totalMove = moveDir * Time.deltaTime + velocity * Time.deltaTime;
         characterController.Move(totalMove);
-
     }
     private void HandleJump()
     {

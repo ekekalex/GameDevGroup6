@@ -9,6 +9,13 @@ public class EscapeMenu : MonoBehaviour
 
     public GameObject pauseMenuUI;
 
+    void Awake()
+    {
+        pauseMenuUI.SetActive(false);
+        Time.timeScale = 1f;
+        GameIsPaused = false;
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))

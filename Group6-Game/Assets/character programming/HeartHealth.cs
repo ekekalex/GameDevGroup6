@@ -18,11 +18,13 @@ public class HeartHealth : MonoBehaviour
     public Transform heartsContainer;
     public GameObject gameOverUI;
     private List<Image> heartImages = new List<Image>();
+    public Vector3 currentCheckpoint;
 
 
     private void Start()
     {
         currentHeath = maxHearts * healthPerHeart;
+        currentCheckpoint = transform.position;
         UpdateHearts();
         GenerateHearts();
         if (gameOverUI != null)
@@ -57,6 +59,22 @@ public class HeartHealth : MonoBehaviour
             GameOver();
         }
 
+    }
+    public void Respawn()
+    {
+        if (currentHeath > 0)
+        {
+            TakeDamage(1);
+            transform.position = currentCheckpoint;
+        }
+        else
+        {
+            GameOver();
+        }
+    }
+    public void SetCheckpoint(Vector3 checkpoint)
+    {
+        currentCheckpoint = checkpoint;
     }
     public void Heal(int amount)
     {
@@ -115,6 +133,7 @@ public class HeartHealth : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
     }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.L))

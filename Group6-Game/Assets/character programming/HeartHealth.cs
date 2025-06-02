@@ -9,7 +9,7 @@ public class HeartHealth : MonoBehaviour
 {
     public int maxHearts = 3;
     public int healthPerHeart = 2; // full heart = 2HP 
-    private int currentHeath;
+    public int currentHeath;
 
     public Sprite fullHeart;  //full heart 
     public Sprite halfHeart; // half heart

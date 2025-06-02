@@ -25,6 +25,7 @@ public class FinalCutsceneTrigger : MonoBehaviour
     {
         if (!triggered && other.CompareTag("Player"))
         {
+            mainCamera = other.GetComponentInChildren<Camera>();
             triggered = true;
             StartCoroutine(PlayFinalCutscene());
         }

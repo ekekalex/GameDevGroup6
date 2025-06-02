@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     public int maxJumps = 2;
     public bool hasCricketPower = false;
     public float cricketHopMultiplier = 0.4f;
-    public float tripleJumpMultiplier = 1.5f;
+    public float tripleJumpMultiplier = 0.5f;
     public CameraControl cameraControl;
     private void Awake()
     {
@@ -38,12 +38,12 @@ public class PlayerMovement : MonoBehaviour
         float a = Input.GetAxis("Horizontal");
         float b = Input.GetAxis("Vertical");
 
-        Vector3 inputDir = new Vector3(a, 0, b);
+        Vector3 inputDir = new Vector3(a, 0f, b).normalized;
+        Vector3 moveDir = Vector3.zero;
         if (inputDir.magnitude >= 0.1f)
         {
-            inputDir.Normalize();
             Quaternion camYaw = cameraControl.GetYawRotation();
-            Vector3 moveDir = camYaw * inputDir;
+            moveDir = camYaw * inputDir;
             float currentSpeed = IsRunning() ? runSpeed : walkSpeed;
             characterController.Move(moveDir * currentSpeed * Time.deltaTime);
 
@@ -54,6 +54,9 @@ public class PlayerMovement : MonoBehaviour
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
             }
         }
+        Vector3 totalMove = moveDir * Time.deltaTime + velocity * Time.deltaTime;
+        characterController.Move(totalMove);
+
     }
     private void HandleJump()
     {

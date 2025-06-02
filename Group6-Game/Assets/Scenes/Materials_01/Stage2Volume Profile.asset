@@ -169,10 +169,10 @@ MonoBehaviour:
   active: 1
   shadows:
     m_OverrideState: 1
-    m_Value: {r: 0.26727664, g: 0.2901011, b: 0.3660378, a: 1}
+    m_Value: {r: 0.18535994, g: 0.14901961, b: 0.2, a: 1}
   highlights:
     m_OverrideState: 1
-    m_Value: {r: 0.7735849, g: 0.676066, b: 0.2787825, a: 1}
+    m_Value: {r: 0.27536482, g: 0.56858486, b: 0.83396226, a: 1}
   balance:
     m_OverrideState: 1
     m_Value: -40
@@ -197,7 +197,7 @@ MonoBehaviour:
     m_Value: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 0.26
+    m_Value: 1.46
   directLightingStrength:
     m_OverrideState: 1
     m_Value: 0
@@ -272,13 +272,13 @@ MonoBehaviour:
   active: 1
   shadows:
     m_OverrideState: 1
-    m_Value: {x: 0.93, y: 0.9381667, z: 1, w: 0}
+    m_Value: {x: 0.98933333, y: 0.84000003, z: 1, w: 0.64680845}
   midtones:
     m_OverrideState: 1
-    m_Value: {x: 0.93866664, y: 1, z: 0.84000003, w: 0}
+    m_Value: {x: 0.74, y: 0.74866664, z: 1, w: 0}
   highlights:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 0.85, z: 0, w: 0}
+    m_Value: {x: 0.81, y: 0.905, z: 1, w: 0}
   shadowsStart:
     m_OverrideState: 0
     m_Value: 0
@@ -301,7 +301,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
-  m_Name: Stage1Volume Profile
+  m_Name: Stage2Volume Profile
   m_EditorClassIdentifier: 
   components:
   - {fileID: 3638402134412271163}

@@ -30,10 +30,6 @@ public class PlayerMovement : MonoBehaviour
     public AnimatorController idleAnim;
     public AnimatorController jumpAnim;
 
-    // movement direction
-    private Vector3 inputDir;
-    private Vector3 moveDir;
-
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
@@ -50,8 +46,8 @@ public class PlayerMovement : MonoBehaviour
     }
     private void HandleMovement() //movement based on the player's input (arrows key and WASD)
     {
-        float a = Input.GetAxis("Horizontal");
-        float b = Input.GetAxis("Vertical");
+        float a = Input.GetAxisRaw("Horizontal");
+        float b = Input.GetAxisRaw("Vertical");
         
         Vector3 inputDir = new Vector3(a, 0, b).normalized;
         if (inputDir.magnitude >= 0.2f)
@@ -67,6 +63,14 @@ public class PlayerMovement : MonoBehaviour
                 Quaternion targetRotation = Quaternion.LookRotation(lookDirection);
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
             }
+        }
+        if (inputDir.magnitude >=0.1f)
+        {
+            animator.runtimeAnimatorController = runAnim;
+        }
+        else
+        {
+            animator.runtimeAnimatorController = idleAnim;
         }
     }
     private void HandleJump()

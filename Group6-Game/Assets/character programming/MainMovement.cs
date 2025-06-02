@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
         float a = Input.GetAxis("Horizontal");
         float b = Input.GetAxis("Vertical");
 
-        Vector3 inputDir = new Vector3(a, 0, b).normalized;
+        Vector3 inputDir = new Vector3(a, 0, b);
         if (inputDir.magnitude >= 0.1f)
         {
             inputDir.Normalize();
@@ -54,7 +54,6 @@ public class PlayerMovement : MonoBehaviour
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
             }
         }
-        characterController.Move(Vector3.zero);
     }
     private void HandleJump()
     {

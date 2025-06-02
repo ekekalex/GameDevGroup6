@@ -75,12 +75,11 @@ MonoBehaviour:
   walkSpeed: 4
   runSpeed: 8
   jumpHeight: 1
-  maxJumps: 10
   gravity: -10
-  hasCricketPower: 0
-  cricketHopMultiplier: 0.4
-  tripleJumpMultiplier: 1.5
-  speed: 6
+  maxJumps: 1
+  hasCricketPower: 1
+  cricketHopMultiplier: 10
+  tripleJumpMultiplier: 10
   cameraControl: {fileID: 1423128483772891445}
 --- !u!1 &7770433241542447773
 GameObject:
@@ -328,20 +327,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 2489523700604118481}
-  followOffset: {x: 0, y: 3, z: -6}
-  followSpeed: 5
+  offset: {x: 0, y: 2, z: -6}
   mouseSensitivity: 3
+  pitch: 20
+  yaw: 0
   minPitch: -20
   maxPitch: 60
+  currentZoom: 0
   minZoom: 5
   maxZoom: 20
-  autoAlign: 1
-  alignDelay: 0.5
-  alignSpeed: 4
-  yaw: 0
-  pitch: 20
-  currentZoom: 0
-  lastInputTime: 0
 --- !u!1001 &2667865875151962682
 PrefabInstance:
   m_ObjectHideFlags: 0

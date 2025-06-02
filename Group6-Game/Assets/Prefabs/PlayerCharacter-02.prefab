@@ -756,7 +756,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 4
-  runSpeed: 8
+  runSpeed: 4
   jumpHeight: 2
   gravity: -10
   maxJumps: 1

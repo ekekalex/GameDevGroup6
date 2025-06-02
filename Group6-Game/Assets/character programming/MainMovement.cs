@@ -3,6 +3,7 @@
 using System;
 using UnityEditor.Animations;
 using UnityEngine;
+using UnityEngine.EventSystems;
 public class PlayerMovement : MonoBehaviour
 {
     public float walkSpeed = 2.5f; //changes depends on the character 
@@ -29,6 +30,10 @@ public class PlayerMovement : MonoBehaviour
     public AnimatorController idleAnim;
     public AnimatorController jumpAnim;
 
+    // movement direction
+    private Vector3 inputDir;
+    private Vector3 moveDir;
+
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
@@ -38,16 +43,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        //handle run vs idle animation
-        if (IsRunning())
-        {
-            animator.runtimeAnimatorController = runAnim;
-        }
-        else
-        {
-            animator.runtimeAnimatorController = idleAnim;
-        }
-        
         if (!isAlive) return;
         HandleMovement();
         HandleJump();

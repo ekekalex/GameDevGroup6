@@ -764,6 +764,11 @@ MonoBehaviour:
   cricketHopMultiplier: 0.4
   tripleJumpMultiplier: 1.5
   cameraControl: {fileID: 7804457469400883784}
+  antonioModel: {fileID: 1337356623274867677}
+  animator: {fileID: 0}
+  runAnim: {fileID: 9100000, guid: c64ec27bcb32a984e89437b27f1e0079, type: 2}
+  idleAnim: {fileID: 9100000, guid: dd757a5da2e80fb43aa9a577ffde09d8, type: 2}
+  jumpAnim: {fileID: 9100000, guid: 3f3c29885d5eaf54f8217b9e61b2c7c6, type: 2}
 --- !u!1 &2857896727225061623
 GameObject:
   m_ObjectHideFlags: 0
@@ -1783,7 +1788,7 @@ Transform:
   m_GameObject: {fileID: 6196045242089559760}
   serializedVersion: 2
   m_LocalRotation: {x: -0.000000037748947, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.5436624, z: 0.0031877044}
+  m_LocalPosition: {x: -0, y: 0.5436624, z: 0.006}
   m_LocalScale: {x: 26.354637, y: 26.354637, z: 26.354637}
   m_ConstrainProportionsScale: 0
   m_Children:

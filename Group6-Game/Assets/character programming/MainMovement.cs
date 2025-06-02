@@ -1,6 +1,7 @@
 //update script include the jump/double jump function
 //automatically it should set to the spacebar for jump action
 using System;
+using UnityEditor.Animations;
 using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
@@ -20,14 +21,33 @@ public class PlayerMovement : MonoBehaviour
     public float cricketHopMultiplier = 0.4f;
     public float tripleJumpMultiplier = 1.5f;
     public CameraControl cameraControl;
+    
+    // Animation controllers
+    public GameObject antonioModel;
+    public Animator animator;
+    public AnimatorController runAnim;
+    public AnimatorController idleAnim;
+    public AnimatorController jumpAnim;
+
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
+        animator = antonioModel.GetComponent<Animator>();
     }
 
     private void Update()
     {
+        //handle run vs idle animation
+        if (IsRunning())
+        {
+            animator.runtimeAnimatorController = runAnim;
+        }
+        else
+        {
+            animator.runtimeAnimatorController = idleAnim;
+        }
+        
         if (!isAlive) return;
         HandleMovement();
         HandleJump();
@@ -37,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
     {
         float a = Input.GetAxis("Horizontal");
         float b = Input.GetAxis("Vertical");
-
+        
         Vector3 inputDir = new Vector3(a, 0, b).normalized;
         if (inputDir.magnitude >= 0.2f)
         {

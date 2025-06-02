@@ -4,14 +4,11 @@ public class CheckPointTrigger : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
-        {
-            PlayerHealthStatus health = other.GetComponent<PlayerHealthStatus>();
+            HeartHealth health = other.GetComponent<HeartHealth>();
             if (health != null)
             {
-                //health.SetCheckpoint(transform.position);
+                health.SetCheckpoint(other.transform.position);
                 Debug.Log("Last Saved Checkpoint was: " + transform.position);
             }
-        }
     }
 }

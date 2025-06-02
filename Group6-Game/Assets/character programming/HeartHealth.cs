@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine;
@@ -11,18 +12,38 @@ public class HeartHealth : MonoBehaviour
     private int currentHeath;
 
     public Sprite fullHeart;  //full heart 
-    public Sprite halffHeart; // half heart
+    public Sprite halfHeart; // half heart
     public Sprite emptyHeart;  //empty
-    public Image[] hearts;  // drag the hearts image here!
+    public GameObject heartPrefab;
+    public Transform heartsContainer;
     public GameObject gameOverUI;
+    private List<Image> heartImages = new List<Image>();
+
 
     private void Start()
     {
         currentHeath = maxHearts * healthPerHeart;
         UpdateHearts();
+        GenerateHearts();
         if (gameOverUI != null)
         {
             gameOverUI.SetActive(false);
+        }
+    }
+    private void GenerateHearts()
+    {
+        foreach (Transform child in heartsContainer)
+        {
+            Destroy(child.gameObject);
+        }
+
+        heartImages.Clear();
+
+        for (int i = 0; i < maxHearts; i++)
+        {
+            GameObject newHeart = Instantiate(heartPrefab, heartsContainer);
+            Image img = newHeart.GetComponent<Image>();
+            heartImages.Add(img);
         }
     }
 
@@ -35,6 +56,7 @@ public class HeartHealth : MonoBehaviour
         {
             GameOver();
         }
+
     }
     public void Heal(int amount)
     {
@@ -45,21 +67,21 @@ public class HeartHealth : MonoBehaviour
     private void UpdateHearts()
     {
         int HP = currentHeath;
-        for (int i = 0; i < hearts.Length; i++)
+        for (int i = 0; i < heartImages.Count; i++)
         {
             if (HP >= 2)
             {
-                hearts[i].sprite = fullHeart;
+                heartImages[i].sprite = fullHeart;
                 HP -= 2;
             }
             else if (HP == 1)
             {
-                hearts[i].sprite = halffHeart;
+                heartImages[i].sprite = halfHeart;
                 HP -= 1;
             }
             else
             {
-                hearts[i].sprite = emptyHeart;
+                heartImages[i].sprite = emptyHeart;
             }
         }
     }
@@ -92,5 +114,12 @@ public class HeartHealth : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
+    }
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            TakeDamage(1);
+        }
     }
 }

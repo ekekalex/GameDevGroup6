@@ -877,7 +877,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   runAnim: {fileID: 9100000, guid: c64ec27bcb32a984e89437b27f1e0079, type: 2}
   idleAnim: {fileID: 9100000, guid: dd757a5da2e80fb43aa9a577ffde09d8, type: 2}
-  jumpAnim: {fileID: 9100000, guid: 3f3c29885d5eaf54f8217b9e61b2c7c6, type: 2}
+  jumpAnim: {fileID: 9100000, guid: 86bc1f360842f3b468033af5b1e8e058, type: 2}
 --- !u!82 &5612222715541374432
 AudioSource:
   m_ObjectHideFlags: 0

@@ -3,7 +3,7 @@ public class RoomFallZone : MonoBehaviour
 {
     public Transform respawnPoint;
     public int damageOnFall = 1;
-    private void OTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         HeartHealth health = other.GetComponent<HeartHealth>();
         if (health != null)

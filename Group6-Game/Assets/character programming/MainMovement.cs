@@ -86,36 +86,29 @@ public class PlayerMovement : MonoBehaviour
             jumpCount = 0;
             velocity.y = -2f;
         }
+
         //testing 
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.V))
         {
+            if (hasCricketPower)
+            {
+                hasCricketPower = false;
+                Debug.Log("Cricket hop deactivated");
+            }
+            else
             hasCricketPower = true;
-            Debug.Log("Cricket hop is activated");
+            Debug.Log("Cricket hop activated");
         }
+
         // assigning key accordingly to the correct jump type
-        if (characterController.isGrounded && Input.GetKeyDown(KeyCode.V) && jumpCount < maxJumps) //triple jump when "V" key is press
+        if (characterController.isGrounded && Input.GetKeyDown(KeyCode.C) && jumpCount < maxJumps && hasCricketPower) //triple jump when "C" key is press
         {
-            PerformJump(jumpHeight * tripleJumpMultiplier);
+            PerformJump(jumpHeight * cricketHopMultiplier);
             jumpCount++;
         }
         if (Input.GetKeyDown(KeyCode.Space) && jumpCount < maxJumps)
         {
-            float jumpPower;
-            if (jumpCount == 0)
-            {
-                jumpPower = jumpHeight; //normal jump
-            }
-            else
-            {
-                if (hasCricketPower)
-                {
-                    jumpPower = jumpHeight * cricketHopMultiplier;
-                }
-                else
-                {
-                    jumpPower = jumpHeight;
-                }
-            }
+            float jumpPower = jumpHeight;
             PerformJump(jumpPower);
             jumpCount++;
         }

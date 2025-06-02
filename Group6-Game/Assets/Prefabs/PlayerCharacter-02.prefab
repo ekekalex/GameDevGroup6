@@ -757,12 +757,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 4
   runSpeed: 4
-  jumpHeight: 2
+  jumpHeight: 1.3
   gravity: -10
   maxJumps: 1
   hasCricketPower: 0
-  cricketHopMultiplier: 0.4
-  tripleJumpMultiplier: 1.5
+  cricketHopMultiplier: 2
+  tripleJumpMultiplier: 2
   cameraControl: {fileID: 7804457469400883784}
   antonioModel: {fileID: 1337356623274867677}
   animator: {fileID: 0}
